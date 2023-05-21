@@ -1,11 +1,11 @@
 ### Global variables
 $RTOOLS_ARCH = ${env:RTOOLS_ARCH}
-$RTOOLS_ZIP = "rtools40-${RTOOLS_ARCH}.7z"
-$RTOOLS_EXE = "rtools40-${RTOOLS_ARCH}.exe"
+$RTOOLS_ZIP = "rtools43-5550-5548.exe"
+$RTOOLS_EXE = "rtools43-5550-5548.exe"
 
 ### Use for bootstrapping installation
-$RTOOLS_MIRROR = "https://ftp.opencpu.org/rtools/installer/"
-# $RTOOLS_MIRROR = "https://cloud.r-project.org/bin/windows/Rtools/"
+# $RTOOLS_MIRROR = "https://ftp.opencpu.org/rtools/installer/"
+$RTOOLS_MIRROR = "https://cloud.r-project.org/bin/windows/Rtools/rtools43/files/"
 # $RTOOLS_MIRROR = "https://ftp.opencpu.org/archive/rtools/4.0/"
 
 ### InnoSetup Mirror
@@ -30,11 +30,11 @@ Function InstallRtoolsZip {
 	(New-Object Net.WebClient).DownloadFile($RTOOLS_MIRROR + $RTOOLS_ZIP, $tmp)
 	7z x $tmp -y -oC:\ | Out-Null
 	CheckExitCode "Failed to extract ${RTOOLS_ZIP}"
-	C:\rtools40\usr\bin\bash.exe --login -c exit 2>$null
+	C:\rtools43\usr\bin\bash.exe --login -c exit 2>$null
 	Write-Host "Installation of ${RTOOLS_ZIP} done!" -ForegroundColor Green
 }
 
-# Don't use installer when: (1) architecture doesn't match host (2) Dir C:/rtools40 already exists
+# Don't use installer when: (1) architecture doesn't match host (2) Dir C:/rtools43 already exists
 Function InstallRtoolsExe {
 	Write-Host "Installing ${RTOOLS_EXE}..." -ForegroundColor Cyan
 	$tmp = "$($env:USERPROFILE)\${RTOOLS_EXE}"	
@@ -45,7 +45,7 @@ Function InstallRtoolsExe {
 
 function bash($command) {
     Write-Host $command -NoNewline
-    cmd /c start /wait C:\rtools40\usr\bin\sh.exe --login -c $command
+    cmd /c start /wait C:\rtools43\usr\bin\sh.exe --login -c $command
     Write-Host " - OK" -ForegroundColor Green
 }
 

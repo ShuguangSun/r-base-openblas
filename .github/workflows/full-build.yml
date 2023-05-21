@@ -25,7 +25,7 @@ jobs:
 
       - name: Download and build r-${{ matrix.src }}
         run: $(cygpath ${GITHUB_WORKSPACE})/build.sh
-        shell: c:\rtools40\usr\bin\bash.exe --login {0}
+        shell: c:\rtools43\usr\bin\bash.exe --login {0}
         id: build
         env:
           version: ${{matrix.src}}
